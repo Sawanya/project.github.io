@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<script src="aframe.min.js"></script>
+<script src="aframe-ar.js"></script>
+<script src="client.js"></script>
+  
+<html>
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+<style>
+  canvas  {	-moz-transform: scale(-1, 1);	-webkit-transform: scale(-1, 1);	-o-transform: scale(-1, 1);	-ms-transform: scale(-1, 1);	transform: scale(-1, 1);  }
+  video  {	-moz-transform: scale(-1, 1);	-webkit-transform: scale(-1, 1);	-o-transform: scale(-1, 1);	-ms-transform: scale(-1, 1);	transform: scale(-1, 1);  }
+</style>
+<div style='position: fixed; top: 10px; width:inherit; text-align: center; z-index: 1; background-color: rgba(255, 255, 255, 0.6);'>
+  <font size=4>
+  <p align=left><a href="https://clustrmaps.com/site/16ven" title="Visit tracker" target="_blank"><img src="//www.clustrmaps.com/map_v2.png?d=WKH-KVfaTQVRp0prhtkOvyuUkN06NcEhV8jz6L6pKpk&cl=ffffff"  width="1%" height="1%" alt="" /></a> <b>Move markers around for AR experience. (You need to print or load in phones <a href="markers.docx" download>these markers</a>)</b></p>
+  </font>
+  <font size=4 color=red><p id="infop" align=left></p></font>
+</div>
+	<a-scene embedded artoolkit='sourceType: webcam;' id="thescene">
+		<!-- handle hiro marker-->
+		<!--<a-marker preset='hiro' id="lysmarker">
+          <!-- This is a lysine side chain, starting from the CA atom, which is set to the origin
+          All coordinates have been divided by 2,
+          so any distance between two atoms must be multiplied by 2 to get the actual distance
+          <a-sphere id="lys1" position="0.000   0.000   0.000" color="grey" radius="0.4"></a-sphere>
+          <a-sphere id="lys2" position="-0.6035  -0.3175  -0.347" color="grey" radius="0.4"></a-sphere>
+          <a-sphere id="lys3" position="-1.2480  -0.037  -0.0455" color="grey" radius="0.4"></a-sphere>
+          <a-sphere id="lys4" position="-1.851  -0.3545  -0.3925" color="grey" radius="0.4"></a-sphere>
+          <a-sphere id="lys5" position="-2.496  -0.0745  -0.0905" color="grey" radius="0.4"></a-sphere>
+          <a-sphere id="lys6" position="-3.075  -0.3795  -0.4235" color="blue" radius="0.4"></a-sphere>
+          <a-sphere id="lys7" position="-0.5875 -0.2035 -0.88" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys8" position="-0.5895 -0.858 -0.2765" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys9" position="-1.264 -0.1515 0.4875" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys10" position="-1.2615 0.503 -0.1155" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys11" position="-1.8355 -0.2405 -0.925" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys12" position="-1.8375 -0.895 -0.322" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys13" position="-2.5115 -0.1885 0.442" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys14" position="-2.5095 0.466 -0.161" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys15" position="-3.057 -0.8825 -0.3935" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys16" position="-3.507 -0.202 -0.233" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="lys17" position="-2.9455  -0.524  -0.89" color="white" radius="0.2"></a-sphere>
+          
+          <a-sphere id="lys18" position="0.000   0.000   0.000" color="grey" radius="0.6"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys19" position="-0.6035  -0.3175  -0.347" color="grey" radius="0.6"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys20" position="-1.2480  -0.037  -0.0455" color="grey" radius="0.6"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys21" position="-1.851  -0.3545  -0.3925" color="grey" radius="0.6"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys22" position="-2.496  -0.0745  -0.0905" color="grey" radius="0.6"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys23" position="-3.075  -0.3795  -0.4235" color="blue" radius="0.6"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys24" position="-0.5875 -0.2035 -0.88" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys25" position="-0.5895 -0.858 -0.2765" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys26" position="-1.264 -0.1515 0.4875" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys27" position="-1.2615 0.503 -0.1155" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys28" position="-1.8355 -0.2405 -0.925" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys29" position="-1.8375 -0.895 -0.322" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys30" position="-2.5115 -0.1885 0.442" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys31" position="-2.5095 0.466 -0.161" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys32" position="-3.057 -0.8825 -0.3935" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys33" position="-3.507 -0.202 -0.233" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+          <a-sphere id="lys34" position="-2.9455  -0.524  -0.89" color="white" radius="0.4"  transparent="true" opacity="0"></a-sphere>
+		</a-marker>
+		
+		<!-- handle kanji marker -->
+		<a-marker preset='kanji' id="glumarker">
+          <!-- This is a glutamate side chain, starting from the CA atom, which is set to the origin-->
+          <a-sphere id="glu1" position="0.000   0.000   0.000" color="grey" radius="0.4"></a-sphere>
+          <a-sphere id="glu2" position="-0.6365 -0.3515 -0.238" color="grey" radius="0.4"></a-sphere>
+          <a-sphere id="glu3" position="-1.2485 0.0445 -0.006" color="grey" radius="0.4"></a-sphere>
+          <a-sphere id="glu4" position="-1.8755 -0.3015 -0.2405" color="grey" radius="0.4"></a-sphere>
+          <a-sphere id="glu5" position="-1.836 -0.8175 -0.563" color="red" radius="0.4"></a-sphere>
+          <a-sphere id="glu6" position="-2.4215 -0.066 -0.1075" color="red" radius="0.4"></a-sphere>
+          <a-sphere id="glu7" position="-0.635 -0.381 -0.7825" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="glu8" position="-0.6555 -0.854 -0.0285" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="glu9" position="-1.25 0.0745 0.538" color="white" radius="0.2"></a-sphere>
+          <a-sphere id="glu10" position="-1.2295 0.5475 -0.2155" color="white" radius="0.2"></a-sphere>
+
+          ></a-sphere>
+		</a-marker>
+
+        <!-- Connecting charged atoms -->
+        <!--<a-sphere radius="0.05" color="yellow" connector="src: #lys6; dest: #glu5; alpha: 0.1"></a-sphere>
+        <a-sphere radius="0.05" color="yellow" connector="src: #lys6; dest: #glu5; alpha: 0.2"></a-sphere>
+        <a-sphere radius="0.05" color="yellow" connector="src: #lys6; dest: #glu5; alpha: 0.3"></a-sphere>
+        <a-sphere radius="0.05" color="yellow" connector="src: #lys6; dest: #glu5; alpha: 0.4"></a-sphere>
+        <a-sphere radius="0.05" color="yellow" connector="src: #lys6; dest: #glu5; alpha: 0.5"></a-sphere>
+        <a-sphere radius="0.05" color="yellow" connector="src: #lys6; dest: #glu5; alpha: 0.6"></a-sphere>
+        <a-sphere radius="0.05" color="yellow" connector="src: #lys6; dest: #glu5; alpha: 0.7"></a-sphere>
+        <a-sphere radius="0.05" color="yellow" connector="src: #lys6; dest: #glu5; alpha: 0.8"></a-sphere>
+        <a-sphere radius="0.05" color="yellow" connector="src: #lys6; dest: #glu5; alpha: 0.9"></a-sphere>
+      
+		<!-- add a simple camera -->
+  	    <a-entity camera></a-entity>
+	</a-scene>
+</body>
+
+<script type="text/javascript">
+	var lysopaq = new Array(17)
+    var gluopaq = new Array(10)
+    
+    setInterval(function(){
+		document.getElementById("thescene").object3D.updateMatrixWorld();
+        var p1 = new THREE.Vector3(); p1.setFromMatrixPosition(document.getElementById("lys6").object3D.matrixWorld);
+        var p2 = new THREE.Vector3(); p2.setFromMatrixPosition(document.getElementById("glu5").object3D.matrixWorld);
+        var p3 = new THREE.Vector3(); p3.setFromMatrixPosition(document.getElementById("glu6").object3D.matrixWorld);
+		distNO1 = 2 * Math.sqrt( Math.pow(p2.x-p1.x,2) + Math.pow(p2.y-p1.y,2) + Math.pow(p2.z-p1.z,2) )        
+		distNO2 = 2 * Math.sqrt( Math.pow(p3.x-p1.x,2) + Math.pow(p3.y-p1.y,2) + Math.pow(p3.z-p1.z,2) )        
+		document.getElementById("infop").innerHTML="<p align='left'>N-O1 distance: " + distNO1 + " &#8491<br>N-O2 distance: " + distNO2 + " &#8491<br>Electrostatics: " + (-1/distNO1/distNO1 - 1/distNO2/distNO2) + "</p>";        
+        
+        for (i=0;i<17;i++) {lysopaq[i]=0}
+        for (i=0;i<10;i++) {gluopaq[i]=0}
+          
+        for (i=1;i<18;i++) {
+          var p1 = new THREE.Vector3(); p1.setFromMatrixPosition(document.getElementById("lys"+i).object3D.matrixWorld);
+          for (j=1;j<11;j++) {
+            var p2 = new THREE.Vector3(); p2.setFromMatrixPosition(document.getElementById("glu"+j).object3D.matrixWorld);
+            distancia = 2 * Math.sqrt( Math.pow(p2.x-p1.x,2) + Math.pow(p2.y-p1.y,2) + Math.pow(p2.z-p1.z,2) );
+            if (distancia < 3) {
+              lysopaq[i-1]=0.5
+              gluopaq[j-1]=0.5
+            }
+          }
+        }
+
+		for (i=18;i<35;i++) { document.getElementById("lys"+i).setAttribute('opacity',lysopaq[i-18])}
+        for (i=11;i<21;i++) { document.getElementById("glu"+i).setAttribute('opacity',gluopaq[i-11])}
+
+    }, 200);
+</script>
+
+</html>
